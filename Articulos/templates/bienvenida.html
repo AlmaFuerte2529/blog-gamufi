@@ -1,0 +1,22 @@
+{% extends "padre.html" %}
+{% load static %} 
+
+{% block titulo %} 
+<h1 class="mb-5">Bienvenidos</h1>
+{% endblock %} 
+
+
+{% block contenido %} 
+<section>
+    <form action="" method="post" style="margin: auto; width: 560px;">
+        {% csrf_token %}
+        <h2>Comunicate con nosotros</h2>
+        {{ form.as_p }}
+        <a href=""  type="submit" class="blogs-button" style="width: 50vw; margin-left : 10vw;">Enviar Comentario</a>
+        <!--<input type="submit" name="enviar" value="Enviar Comentario" >-->
+        {% if mensaje %}
+        <h2>{{ mensaje }}</h2>
+        {% endif %}
+    </form> 
+</section>
+{% endblock %} 

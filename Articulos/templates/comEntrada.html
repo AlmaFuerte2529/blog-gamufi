@@ -1,0 +1,21 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block Articulo %} 
+    <div>
+                
+        {% if form.error %}
+        <p style= "color:red">ERROR EN EL FORMULARIO</p>
+        {% endif %}
+    <section style="margin: 0 auto;margin-left:500px;margin-top: 20px;margin-bottom: 300px;">
+        <form class="form-table" action="{% url 'comentar' id_entrada %}" method="POST" style="margin-top: 10px;"> {% csrf_token %}        
+            <table>
+                {{ form.as_table }}
+            </table>
+            <section style="margin-left:260px; margin-top: 10px;">
+                <input type="submit" class ="btn btn-primary" value="Enviar" style="font-size:20px;border: 3px solid #47cfac">
+            </section>
+        </form>
+    </section>
+    </div>
+{% endblock %}

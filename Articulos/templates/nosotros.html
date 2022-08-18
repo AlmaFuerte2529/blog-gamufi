@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <link href="{% static '\main.css' %}" rel="stylesheet" />
+    <link href="{% static '\media-queries.css' %}" rel="stylesheet"  />
+    <link href="{% static '\font\flaticon.css' %}" rel="stylesheet" />
+    {% block estilos %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+    
+      <section class="header-icons-container">
+      </section>
+        <nav>
+            <section class="nav-logo-container">
+                <h1 style="font-size: 30px;color: white;"><a href="{% url 'inicio' %}"style="font-size: 30px;color: white;">GAMUFI</a></h1>
+            </section>
+            <section class="profile-link">
+              {% if not request.user.is_authenticated %}
+                <i><a href="{% url 'login' %}" style="margin-left:auto; margin-right: auto;">Ingresar</a>
+                <i><a href="{% url 'nosotros' %}"  style="margin-left:auto; margin-right: auto;">Acerca de Nosotros</a>
+                <a href="{% url 'registrate' %}" style="margin-left:auto; margin-right: auto;">Registrate</a>
+              {% endif %}
+            </section>
+      </nav>
+    </header>
+    {% block Articulo %}
+    <main class="blogs-main">
+        {{ mensaje }}
+        {% if request.user.is_authenticated %}
+        <div class="user">
+            <img style="width: 60px; height: 60px; border-radius: 50%;" src="{{ request.user.avatar_set.first.imagen.url }}" alt="imagen de perfil"/>
+            <div id="hormenu" style="color: white;">
+                <ul>
+                    <li>
+                        <p class="user" style="color: white;">{{ request.user.username|title }}</p>
+                        <ul>
+                            <li><a href="{% url 'editarPerfil' %}">Editar Perfil</a></li>
+                            <li><a href="">Sector de Mensajes</a></li>
+                            <a href="{% url 'logout' %}" style="margin-left:auto; margin-right: auto;"> Salir</a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+      <section class="blogs-news-container">
+        <div class="grid-container blogs-main-new">
+            <h3 style="color:blue">Acerca de Nosotros</h3>
+            <div class="blogs-news-img-container">
+            <img src="{% static '\imagenes\coder.jpeg' %}" alt="" />
+        </div>
+    
+        <div class="blogs-news-info-container">
+            <h2>Bienvenidos a Nustro Blog de Articulos  Turisticos</h2>
+            <p>
+              Este Blog, esta creado para aquellas personas que necesitan brindar o recibir
+              Informacion respecto a algunos lugares turisticos
+            </p>
+        </div>
+      </section>
+    <section class="blogs-post-container" style="text-align: center;position: 30px;">
+            <h1>Integrantes</h1>
+                <li>Fiorini Pablo</li>
+                <li>Gareis Pablo</li>
+                <li>Muzyka Pablo</li>
+             <h2>Curso</h2>
+            <li>Python</li>
+            <h2>Comision</h2>
+            <li>37360</li>
+            <h2>Plataforma: Coder House</h2>
+            <li><a href="https://www.coderhouse.com/">Link</a></li>
+        </article>
+      </section>
+      
+    </main>
+{% endblock %}
+    <footer>
+      <p>Página Creada por los Alumnos de Coder House ---> Curso "Python"</p>
+    </footer>
+
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'imagenes/favicon.png' %}" />
+    <title>Blog</title>
+    <link href="{% static '\main.css' %}" rel="stylesheet" />
+    <link href="{% static '\media-queries.css' %}" rel="stylesheet"  />
+    <link href="{% static '\font\flaticon.css' %}" rel="stylesheet" />
+    {% block estilos %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+    
+      <section class="header-icons-container">
+      </section>
+        <nav>
+            <section class="nav-logo-container">
+                <h1 style="font-size: 30px;color: white;"><a href="{% url 'inicio' %}"style="font-size: 30px;color: white;">GAMUFI</a></h1>
+            </section>
+            <section class="profile-link">
+              {% if not request.user.is_authenticated %}
+                <i><a href="{% url 'login' %}" style="margin-left:auto; margin-right: auto;">Ingresar</a>
+                <a href="{% url 'registrate' %}" style="margin-left:auto; margin-right: auto;">Registrate</a>
+              {% endif %}
+              {% if request.user.is_authenticated %}
+                <i><a href="{% url 'entrada' %}" style="margin-left:auto; margin-right: auto;">Nuevo Articulo</a>
+              {% endif %}
+                <i><a href="{% url 'nosotros' %}" style="margin-left:auto; margin-right: auto;">Acerca de Nosotros</a>
+            </section>
+      </nav>
+    </header>
+    {% block Articulo %}
+    <main class="blogs-main">
+        {{ mensaje }}
+        {% if request.user.is_authenticated %}
+        <div class="user">
+            <img style="width: 60px; height: 60px; border-radius: 50%;" src="{{ request.user.avatar_set.first.imagen.url }}" alt="imagen de perfil"/>
+            <h3>{{ request.user }}</h3>
+            <div id="hormenu" style="color: white;">
+                <ul>
+                    <li>
+                        <p class="user" style="color: white;">{{ request.user.username|title }}</p>
+                        <ul>
+                            <li><h4 style="color:blue;">Hay {{ nuevos }} nuevos mensajes</h4></li>
+                            <li><a href="{% url 'editarPerfil' %}">Editar Perfil</a></li>
+                            <li><a href="{% url 'mensajes' %}">Sector de Mensajes</a></li>
+                            <li><a href="{% url 'logout' %}" style="margin-left:auto; margin-right: auto;"> Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+              </div>
+        </div>
+        {% endif %}
+      <section class="blogs-news-container">
+        <div class="grid-container blogs-main-new">
+            <h3 style="color:blue">Noticias</h3>
+            <div class="blogs-news-img-container">
+            <img src="{% static '\imagenes\fondo.jpg' %}" alt="" />
+        </div>
+    
+        <div class="blogs-news-info-container">
+            <h2>Experiencias de Emigraciones de Argentinos en este año</h2>
+            <p>
+              Estos Articulos que presentamos a continuación, 
+              mencionan distintas experiencias contadas por Argentinos que están viviendo en distintas locaciones.
+            </p>
+        </div>
+      </section>
+    <section class="blogs-post-container">
+        <div class="grid-container">
+            <h3 class="blogs-post-titulo-post" style="color:blue;">Articulos Más Recientes</h3>
+            {% for elemento in articulos %}
+            <article class="post-container" style="text-align: center;">
+                {% if elemento.imagen %}
+                <img src="{{ elemento.imagen.url }}" alt="" style="border-radius:20%;">
+                {% endif %}
+                <h3>Título: {{ elemento.titulo }}</h3>
+                <!-- <p>Contenido: {{ elemento.contenido|safe }}</p> -->
+                <h4>Autor: {{ elemento.autor }}</h4> 
+                <a href="{% url 'detalle' elemento.id %}"  class="blogs-button">Leer más</a>
+            </article>
+            {% endfor %}
+            <section style="text-align: center;">
+              <a href="{% url 'entradas' %}"  class="blogs-button">Ver todos los Articulos</a>
+            </section >
+            <section style="border: 3px solid #22272d;border-radius:20px;width:990px;height: 350px;margin-top: 25px;text-align: center;">
+              {% block contenido %}
+
+              {% endblock %}
+            </section>
+        </div>
+      </section>
+      
+    </main>
+{% endblock %}
+    <footer>
+      <p>Página Creada por los Alumnos de Coder House ---> Curso "Python"</p>
+    </footer>
+
+  </body>
+</html>

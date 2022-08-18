@@ -1,0 +1,48 @@
+{% extends "padre.html" %}
+{% load static %} 
+
+{% block Articulo %}
+<section class="grid-container blogpost-img-container">
+  <img src="{% static '\imagenes\aaa.jpg' %}" alt="" />
+</section>
+<section class="blogpost-main-container">
+  <div class="grid-container-blog">
+    <h3 style="color:#2c3e50;font-size: 30px; text-align: center;">Sector de Noticias</h3>
+  </div>
+</section>
+<section class="blogs-post-container">
+  <section  style="text-align: center;">
+    {% for entrada in entradas %}
+      <h3 style="color: blue;font-size:20px;"> Titulo:"{{ entrada.titulo }}"</h3>
+      <p style="text-align:center; margin:0 auto;">Contenido: {{ entrada.contenido|safe }}</p>
+      {% if entrada.imagen %}
+      <img src="{{ entrada.imagen.url }}" alt="Imagen de entrada" style="width:350px ;">
+      {% endif %}
+      <h4>Autor: {{ entrada.autor }}</h4>
+      <p>Creado el: {{ entrada.fecha_ingreso }}</p>
+      <a href="{% url 'detalle' entrada.id %}"  class="blogs-button" >Leer más</a>
+      <section style="margin-bottom: 10px;">
+        <p>----------------------------------------------------------------------------</p>
+      </section>
+    {% endfor %}
+  </section>
+</section>
+
+<!--
+{% block contenido %} 
+<section>
+    <form action="" method="post" style="margin: auto; width: 560px;">
+        {% csrf_token %}
+        <h2>Comunicate con nosotros</h2>
+        {{ form.as_p }}
+        <a href=""  type="submit" class="blogs-button" style="width: 50vw; margin-left : 10vw;">Enviar Comentario</a>
+        <input type="submit" name="enviar" value="Enviar Comentario" >
+        {% if mensaje %}
+        <h2>{{ mensaje }}</h2>
+        {% endif %}
+    </form> 
+</section>
+{% endblock %} 
+-->
+
+{% endblock %}

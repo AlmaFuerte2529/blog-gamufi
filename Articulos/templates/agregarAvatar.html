@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block Articulo %} 
+    <div>
+        
+
+
+        <section style="margin-bottom: 370px;text-align:center;">
+            <h1>AGREGAR AVATAR: {{ usuario }}</h1>
+            <form action="{% url 'agregarAvatar'  %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        
+                <table style="text-align:center;margin:0 auto;">
+
+                {{ formulario.as_table }}
+                </table>
+        
+                <!--- -->
+                <input type="submit" value="Agregar" style="font-size:20px;border: 3px solid #47cfac;margin-top:20px;">
+        
+        
+            </form>
+        </section>   
+    
+    </div>
+{% endblock %}

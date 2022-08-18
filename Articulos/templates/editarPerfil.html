@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Login</title>
+        {% load static %} 
+        <link href="{% static '\styles.css' %}" rel="stylesheet" />
+        <link href="{% static '\main.css' %}" rel="stylesheet" />
+        <link href="{% static '\media-queries.css' %}" rel="stylesheet"  />
+        <link href="{% static '\font\flaticon.css' %}" rel="stylesheet" />
+    </head>
+    <body style="background-color:white">
+        <header>
+    
+            <section class="header-icons-container">
+            </section>
+              <nav>
+                  <section class="nav-logo-container">
+                      <h1 style="font-size: 30px;color: white;"><a href="{% url 'inicio' %}"style="font-size: 30px;color: white;">GAMUFI</a></h1>
+                  </section>
+            </nav>
+          </header>
+        {% block Articulo %} 
+        <div class="main-boxs">
+            <img src="{% static '\imagenes\user.png' %}" class="avatar" alt="avatar">
+            <h1 style="color: #2c3e50;">Modificar Datos</h1>
+            <form">
+            <form class="form-table" action="{% url 'editarPerfil' %}" method="POST">
+                {% csrf_token %}          
+                <table style="color: #2c3e50;margin-top: -35px;">
+                {{ formulario.as_table }}
+                </table>       
+                <input type="submit" class="btn btn-sm btn-primary" value="Confirmar" style="margin-top: -8px;"> 
+                <a href="{% url 'agregarAvatar' %}"><input type="button" class="btn btn-sm btn-primary"  value="Agregar Avatar" style="margin-top: -8px;"></a> 
+                <a href="{% url 'inicio' %}"><input type="button" class="btn btn-sm btn-primary"  value="Salir" style="margin-top: -8px;"></a> 
+       
+            </form>
+        </div>
+        {% endblock %}
+
+
+    </body>
+
+</html>

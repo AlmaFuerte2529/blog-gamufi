@@ -1,0 +1,15 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block Articulo %} 
+    <div>
+                
+    <h1>Mensaje de: {{ mensaje.autor }}</h1>
+    {% if mensaje %}
+        <p>{{ mensaje.mensaje }}</p>
+    {% endif %}
+    <br><br>
+    <a href="{% url 'mensajes' %}">VOLVER A MENSAJES</a>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "padre.html" %}
+{% load static %} 
+
+{% block Articulo %}
+<section class="grid-container blogpost-img-container">
+  <img src="{% static '\imagenes\aaa.jpg' %}" alt="" />
+</section>
+<section class="blogpost-main-container">
+  <div class="grid-container-blog">
+    <h3 style="color:blue;font-size: 30px;">Noticias</h3>
+    <article>
+          
+    </article>
+  </div>
+</section>
+
+<section style="border-radius: 5px;color:blue;border: 0.1px solid #1E679A;">
+  <form action="" method="post" style="margin: auto; width: 320px;color: blue;">
+    <H2>Sector de Comentarios</H2>
+  </form>
+  {% for comentars in comentar %}
+  <div style="margin: auto; width: 720px;">
+    <li>Usuario: Anónimo</li>
+    <ul>Comentario: {{ comentars }}</ul>
+  </div>
+{% endfor %}
+
+</section>
+
+<!--
+{% block contenido %} 
+<section>
+    <form action="" method="post" style="margin: auto; width: 560px;">
+        {% csrf_token %}
+        <h2>Comunicate con nosotros</h2>
+        {{ form.as_p }}
+        <a href=""  type="submit" class="blogs-button" style="width: 50vw; margin-left : 10vw;">Enviar Comentario</a>
+        <input type="submit" name="enviar" value="Enviar Comentario" >
+        {% if mensaje %}
+        <h2>{{ mensaje }}</h2>
+        {% endif %}
+    </form> 
+</section>
+{% endblock %} 
+-->
+
+{% endblock %}

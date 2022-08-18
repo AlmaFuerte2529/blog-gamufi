@@ -1,0 +1,22 @@
+{% extends "padre.html" %}
+{% load static %}
+
+        {% block Articulo %} 
+            <div>
+                
+                <form class="form-table" action="{% url 'editarEntrada' id_entrada %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                
+                    <table>
+                        {{ form.media }}
+                        {{ form.as_table }}
+                    </table>
+            
+                    <input type="submit" class="btn btn-sm btn-primary" value="Editar">
+                    {% if mensaje %}
+                        <h2>{{ mensaje }}</h2>
+                    {% endif %}
+                </form>
+            </div>
+        {% endblock %}
+ 

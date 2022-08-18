@@ -1,0 +1,21 @@
+{% block contenido %} 
+<section>
+    {% if usuario.is_authenticated %}
+    <div class="user">
+        <img style="width: 60px; height: 60px; border-radius: 50%;" src="{{ usuario.avatar_set.first.imagen.url }}" alt="imagen de perfil"/>
+        <div id="hormenu">
+            <ul>
+                <li>
+                    <p class="user">{{ usuario.username|title }}</p>
+                    <ul>
+                        <li><a href="#">Datos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    
+    {{ mensaje }}
+</section>
+{% endblock %} 

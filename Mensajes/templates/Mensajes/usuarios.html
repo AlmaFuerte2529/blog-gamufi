@@ -1,0 +1,13 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block Articulo %} 
+    <div>
+        <h3>Lista usuarios:</h3>
+        {% if usuarios %}
+        {% for usuario in usuarios %}
+            <a href="{% url 'formMensajes' usuario.username %}"><p>{{ usuario.username }}</p></a>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

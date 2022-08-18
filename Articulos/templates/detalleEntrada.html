@@ -1,0 +1,49 @@
+{% extends "padre.html" %}
+{% load static %} 
+
+{% block Articulo %}
+  <section class="grid-container blogpost-img-container">
+    <img src="{% static '\imagenes\aaa.jpg' %}" alt="" />
+  </section>
+  <section class="blogpost-main-container">
+    <div class="grid-container-blog">
+       <h3 style="color:blue;font-size: 30px;">Noticias</h3>
+    </div>
+  </section>
+  <section style="text-align: center;">
+    {% if entrada %}
+      <h3 style="color:blue;font-size:30px;"> Titulo:" {{ entrada.titulo }} "</h3>
+      <p style="text-decoration: underline;font-size:20px;">Articulo:</p> 
+      <p>{{ entrada.contenido|safe }}</p>
+      {% if entrada.imagen %}
+      <img src="{{ entrada.imagen.url }}" alt="Imagen de entrada" style="width:350px ;">
+      {% endif %}
+      <h4>Autor: {{ entrada.autor }}</h4>
+      <p>Creado el: {{ entrada.fecha_ingreso }}</p>
+      <br><br>
+      {% if comentarios %}
+      {% for comentario in comentarios %}
+      <p> {{ comentario.nombre }}</p>
+      <p>{{ comentario.comentario }}</p>
+      {% endfor %}
+      {% endif %}
+      <br><br>
+      {% if request.user == entrada.autor %}
+      <a href="{% url 'editarEntrada' entrada.id %}">EDITAR</a>
+      <a href="{% url 'borrar' entrada.id %}">BORRAR</a>
+      {% endif %}
+      <section style="border: 3px solid #47cfac;border-radius:10px;width:300px;height: 100px;margin-top: 10px;text-align: center;margin-left: 630PX;margin-bottom: 20PX;">
+        <section style="margin-bottom: 35px;">
+            <h1>Sector de Comentarios</h1>
+          <a href="{% url 'comentar' entrada.id %}" class="blogs-button" >COMENTAR</a>
+        </section>
+      </section>
+    {% endif %}
+    {% if mensaje %}
+    <p>{{ mensaje }}</p>
+    {% endif %}
+  </section>
+
+
+
+{% endblock %}

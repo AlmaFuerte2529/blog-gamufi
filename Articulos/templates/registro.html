@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Login</title>
+        {% load static %} 
+        <link href="{% static '\main.css' %}" rel="stylesheet" />
+        <link href="{% static '\media-queries.css' %}" rel="stylesheet"  />
+        <link href="{% static '\font\flaticon.css' %}" rel="stylesheet" />
+        <meta http-equiv="Refresh" content="3;url={% url 'inicio' %} "> 
+    </head>
+    <body>
+        <header>
+    
+            <section class="header-icons-container">
+            </section>
+              <nav>
+                  <section class="nav-logo-container">
+                      <h1 style="font-size: 30px;color: white;"><a href="{% url 'inicio' %}"style="font-size: 30px;color: white;">GAMUFI</a></h1>
+                  </section>
+            </nav>
+          </header>
+        {% block Articulo %}            
+            <h1>Gracias por Registrarte</h1>
+            <h2 style="color:#47cfac ;">Redireccionamiento en 3 Segundos</h2>
+            {% endblock %}
+            <footer style="position: absolute; bottom:0;">
+                <p>Página Creada por los Alumnos de Coder House ---> Curso "Python"</p>
+              </footer>
+        </body>
+    
+    </html>
